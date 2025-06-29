@@ -7,6 +7,7 @@ const config: AppConfig = {
   port: parseInt(process.env['PORT'] || '4000', 10),
   host: process.env['HOST'] || '0.0.0.0',
   nodeEnv: process.env['NODE_ENV'] || 'development',
+  publicBaseUrl: process.env['PUBLIC_BASE_URL'] || 'http://localhost:8080',
   
   cors: {
     allowedOrigins: process.env['ALLOWED_ORIGINS']?.split(',') || ['http://localhost:3000'],

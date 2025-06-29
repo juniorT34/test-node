@@ -4,6 +4,7 @@ import sessionManager from '../../services/sessionManager';
 import { logSessionAction } from '../../utils/logger';
 import logger from '../../utils/logger';
 import { ApiResponse, SessionResponse } from '../../types';
+import config from '../../config';
 
 // Validation rules
 export const validateStartSession = [
@@ -67,14 +68,16 @@ export const startSession = async (req: Request, res: Response): Promise<void> =
       userId,
     });
 
-    // Explicitly add hostPort and browserUrl to the response
-    const response: ApiResponse<SessionResponse & { hostPort: number; browserUrl: string }> = {
+    // Explicitly add hostPort, browserUrl, and publicBrowserUrl to the response
+    const publicBrowserUrl = `${config.publicBaseUrl}/browser-session/${session.containerId}/`;
+    const response: ApiResponse<SessionResponse & { hostPort: number; browserUrl: string; publicBrowserUrl: string }> = {
       success: true,
       message: 'Session started successfully',
       data: {
         ...session,
         hostPort: session.hostPort,
         browserUrl: session.browserUrl,
+        publicBrowserUrl,
       },
     };
 

@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../../app';
 import sessionManager from '../../services/sessionManager';
-import dockerService from '../../services/dockerService';
+// import dockerService from '../../services/dockerService';
 
 describe('Session Management API', () => {
   beforeEach(async () => {
