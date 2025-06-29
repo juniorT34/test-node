@@ -13,7 +13,7 @@ export const proxyToBrowser = (req: Request, res: Response, next: NextFunction):
 
   // Return the middleware function directly
   const proxy = createProxyMiddleware({
-    target: `http://localhost:${hostPort.toString()}`,
+    target: `http://host.docker.internal:${hostPort.toString()}`,
     changeOrigin: true,
     ws: true,
     pathRewrite: (path: string, _req: Request) => {
