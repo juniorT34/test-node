@@ -4,6 +4,7 @@ import { stopSession, validateStopSession } from './stopSession';
 import { getRemainingTime, validateRemainingTime } from './remainingTime';
 import { extendSession, validateExtendSession } from './extendSession';
 import { createSessionRateLimiter } from '../../services/rateLimiter';
+import { proxyToBrowser } from './proxyToBrowser';
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.post('/start-session', sessionRateLimiter, validateStartSession, startSes
 router.post('/stop-session', validateStopSession, stopSession);
 router.get('/remaining-time', validateRemainingTime, getRemainingTime);
 router.post('/extend-session', validateExtendSession, extendSession);
+router.use('/proxy/:containerId', proxyToBrowser);
 
 export default router; 
